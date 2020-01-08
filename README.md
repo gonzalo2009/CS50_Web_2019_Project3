@@ -2,6 +2,8 @@
 
 Web Programming with Python and JavaScript
 
+Files:
+
 -base.html: contains the basic layout of the pages.
 
 -register.html: this page is where tou register as a user, compliting the form.
@@ -14,7 +16,7 @@ Web Programming with Python and JavaScript
 
 -cart.html: here you can view all the items that you have added to your cart. You can delete an item by clicking the gray button at the right of the item and you can go to payment page by clicking the blue button to pay. 
 
--payment.html*: Here you have to pay (through the stripe API) providing the information of a credit card. Once you submit the information the                 order will be placed and you will be redirected to the page of the order.
+-payment.html*: Here you have to pay (through the stripe API) providing the information of a credit card. Once you submit the information the order will be placed and you will be redirected to the page of the order.
 
 -order.html: after the payment you will be redirected to this page. Here you can view all the detail of the order that you have made.
 
@@ -34,16 +36,18 @@ Web Programming with Python and JavaScript
 
 LICENSE*: is the license to use the code extracted from https://github.com/stripe-samples/card-payment-charges-api.
 
-Personal Touch: The web application is integrated with the Stripe Api.
-
-"Special" pizza: consist in a pizza that contains five toppings to choose.
-
-* Those are files extracted from the web or files that contains code extracted from the web:
+*Files extracted from the web or files that contains code extracted from the web. Most files and codes have modifications:
     
-    icon.png: image from https://i.pinimg.com/originals/b5/3c/54/b53c54112aecb87f5ee59862af1fbc93.png.
+-icon.png: image from https://i.pinimg.com/originals/b5/3c/54/b53c54112aecb87f5ee59862af1fbc93.png.
 
-    payment.html, global.css* and normalize.css*: those files were extrated from https://github.com/stripe-samples/card-payment-charges-api and then modified. 
+-payment.html, global.css* and normalize.css*: those files were extrated from https://github.com/stripe-samples/card-payment-charges-api. 
 
-    scripts.js, views.py: contains code extracted from https://github.com/stripe-samples/card-payment-charges-api and then modified. The lines of code extracted are specified in each file. 
+-scripts.js, views.py: contains code extracted from https://github.com/stripe-samples/card-payment-charges-api. The lines of code extracted are specified in each file. 
 
-    LICENSE: license from https://github.com/stripe-samples/card-payment-charges-api.
+-LICENSE: license from https://github.com/stripe-samples/card-payment-charges-api.
+
+Other information:
+
+-Personal Touch: The web application is integrated with the Stripe Api.
+
+-"Special" pizza: consist in a pizza that contains five toppings to choose.
