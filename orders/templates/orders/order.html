@@ -1,0 +1,56 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+Order
+{% endblock %}
+
+{% block body %}
+<h2 class="message">Order #{{ order.id }} completed with success:</h2>
+<table class="table table-detail">
+    <thead>
+        <th scope="col">Item</th>
+        <th scope="col" class="right">Price</th>
+        <th scope="col" class="right">Quantity</th>
+        <th class="center">Other Details</th>
+        <th scope="col" class="right">Total Price</th>
+    </thead>
+    <tbody>
+        {% for purchase in order.purchases.all %}
+        <tr>
+            <td>{{ purchase.item }}</td>
+            <td class="right">{{ purchase.price }}</td>
+            <td class="right">{{ purchase.quantity }}</td>
+            <td>
+                {% if purchase.size %}
+                <p>Size: {{ purchase.size }}</p>
+                {% endif %}
+
+                {% if purchase.item.number_toppings %}
+                <p>Toppings:</p>
+                <ul>
+                    {% for topping in purchase.toppings.all %}
+                    <li>{{ topping }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                {% if purchase.add_ons.all %}
+                <p>Add Ons:</p>
+                <ul>
+                    {% for add_on in purchase.add_ons.all %}
+                    <li>{{ add_on }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                {% if purchase.extra_cheese_added %}
+                <p>Extra Chesse</p>
+                {% endif %}
+            </td>
+            <td class="right">{{ purchase.total_price }}</td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
+<h4 class="right">Total price: {{ order.price }}</h4>
+{% endblock %}

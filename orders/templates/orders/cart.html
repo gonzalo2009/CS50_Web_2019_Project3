@@ -1,0 +1,39 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+Shopping Cart
+{% endblock %}
+
+{% block body %}
+<h1 class="center-header">Shoppping Cart</h1>
+{% if cart.purchases.all %}
+<table class="table table-detail">
+    <thead>
+        <th scope="col" width="20%" class="center">Item</th>
+        <th scope="col" width="20%" class="right">Price</th>
+        <th scope="col" width="20%" class="right">Quantity</th>
+        <th scope="col" width="20%" class="right">Total Price</th>
+        <th scope="col" width="20%" class="right"></th>
+    </thead>
+    <tbody>
+    {% for purchase in cart.purchases.all %}
+    <tr>
+        <td class="text-left">{{ purchase.item }}</td>
+        <td class="right">{{ purchase.price }}</td>
+        <td class="right">{{ purchase.quantity }}</td>
+        <td class="right">{{ purchase.total_price }}</td>
+        <td class="right">
+            <button class="btn btn-secondary delete-purchase" data-url="{% url 'delete' purchase.id %}">Delete</button>
+        </td>
+    </tr>
+    {% endfor%}
+    </tbody>
+</table>
+<h4 id="total-price-cart" class="right">Total price: {{ cart.price }}</h4>
+<button id="order" class="btn btn-primary float-right">Order</button>
+{% else %}
+<h2 class="center-header">The cart is empty. Go to <a id="menu" href="{%  url 'menu'%}">menu</a>.</h2>
+{% endif %}
+{% endblock %}
+
+

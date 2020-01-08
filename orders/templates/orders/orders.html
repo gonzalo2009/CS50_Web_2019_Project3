@@ -1,0 +1,33 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+Orders
+{% endblock %}
+
+{% block body %}
+<h1 class="center-header">Orders</h1>
+{% if orders.all %}
+<table class="table table-detail">
+    <thead>
+        <th scope="col" class="right">Order id</th>
+        <th scope="col" class="right">Price</th>
+        <th scope="col" class="text-left-2">Date</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+    {% for order in orders.all|dictsort:"date" reversed %}
+    <tr>
+        <td class="right">{{ order.id }}</td>
+        <td class="right">{{ order.price }}</td>
+        <td class="text-left-2">{{ order.date }}</td>
+        <td>
+            <a class="btn btn-primary" href="{% url 'order_number' order.id %}">View Detail</a>
+        </td>
+    </tr>
+    {% endfor%}
+    </tbody>
+</table>
+{% else %}
+<h2 class="center-header">There are no orders</h2>
+{% endif %}
+{% endblock %}

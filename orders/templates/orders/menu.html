@@ -1,0 +1,44 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+Menu
+{% endblock %}
+
+{% block body %}
+<h1 class="center-header">Menu</h1>
+<div class="form-group2">
+    {% for category in categories %}
+    <div>
+        <h2 class="category-name">{{ category}}</h2>
+        <table class="table">
+            <thead>
+                <th scope="col" class="center" width="240">Item</th>
+                    {% if category.items.first.one_price %}
+                    <th scope="col" class="right" width="80"></th>
+                    <th scope="col" class="right" width="180"></th>
+                    {% else %}
+                    <th scope="col" class="right" width="80">Small</th>
+                    <th scope="col" class="right" width="180">Large</th>
+                    {% endif %}
+                <th scope="col"></th>
+            </thead>    
+            <tbody>
+                {% for item in category.items.all %}
+                <tr>
+                    <th scope="row">{{ item }}</th>
+                    {% if item.one_price %}
+                    <td></td>
+                    <td class="right">{{ item.one_price }}</td>
+                    {% else %}
+                    <td class="right">{{ item.price_small }}</td>
+                    <td class="right">{{ item.price_large }}</td>
+                    {% endif %}
+                    <td><a class="btn btn-primary float-right btn-menu" href="{% url 'item' item.id %}">Add</a></td>
+                </tr>   
+                {% endfor%}
+            </tbody>  
+        </table>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

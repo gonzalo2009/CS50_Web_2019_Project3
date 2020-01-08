@@ -1,0 +1,77 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+Add to cart
+{% endblock %}
+    
+{% block body %}
+<div class="item-container">
+    <h1 id="category" class="center-header"  value="{{ category.id }}">{{ item }}</h1>
+    <div id="item-form">
+        <h4>Category: {{ item.category }}</h4>
+        {% if item.one_price %}
+        <h4 id="one-price-id" data-price="{{item.one_price}}">Price: {{item.one_price}}</h4>
+        {% else %}
+        <h4>Price: Small: {{ item.price_small }}/Large: {{ item.price_large }}</h4>
+        {% endif %}
+        <form action="{% url 'item' item.id %}" data-url="{% url 'item' item.id %}" method="POST"  class="menu-form" id="detail">
+            {% if number_toppings %}
+            <div class="form-group2">
+                {% for number in number_toppings  %}
+                <select class="form-control form-group2 topping" id="topping {{number}}" name="topping{{number}}">
+                    <option value="" selected disabled>Choose Topping</option>
+                    {% for topping in toppings %}
+                    <option value="{{topping.id}}">{{ topping }}</option>
+                    {% endfor %}
+                </select>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if item.one_price is None %}
+            <select class="form-control form-group2" id="price-selection" name="size">
+                <option  value="" data-price="" selected disabled>Choose size</option>
+                <option  value="S" data-price="{{item.price_small}}">Small</option>
+                <option  value="L" data-price="{{item.price_large}}">Large</option>
+            </select>
+            {% endif %}
+            
+            {% if add_on_list %}
+            {% for add_on in add_on_list %}
+            <div class="form-check" id="add-on-id">
+                <input class="form-check-input add-on" type="checkbox" value="{{ add_on.add_on.id }}" id="add-on-id{{ add_on.add_on.id }}" name="add_on{{ add_on.index }}">
+                <label class="form-check-label" for="add-on-id">
+                    {{ add_on.add_on }}
+                </label>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if item.extra_cheese %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="yes" id="extra-cheese-id" name="extra_cheese_added">
+                <label class="form-check-label" for="extra-cheese-id">
+                    Extra Chesse
+                </label>
+            </div>
+            {% endif %}
+
+            <div class="form-group4">
+                <input type="number" class="purchase" id="quantity" name="quantity" min="1" value="1"
+                    oninput="validity.valid||(value='');">
+            </div>
+            {% if item.one_price is None %}
+            <h5 id="total-price" name="total-price" data-label="Total price:">Total Price:</h5>
+            {% else %}
+            <h5 id="total-price" name="total-price" data-label="Total Price: {{item.one_price}}" 
+                data-price="{{item.one_price}}">Total Price: {{item.one_price}}</h5>
+            {% endif %}
+            <div class="form-group4">
+                <button type="submit" class="btn btn-primary">Add to cart</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+

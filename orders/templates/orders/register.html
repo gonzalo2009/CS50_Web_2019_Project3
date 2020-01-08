@@ -1,0 +1,49 @@
+{% extends "orders/base.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block body %}
+{% if message %}
+<div id="context-message" hidden data-message="{{ message }}"></div>
+{% endif%}
+
+{% if empty_fields %}
+<div id="context-fields" hidden data-fields="{{ empty_fields }}" ></div>
+{% endif%}
+
+<form class="form1" method="POST" action="{% url 'register' %}">
+    {% csrf_token %}
+    <div class="form-group1">
+        <h1>Register</h1>
+    </div>
+
+    <div class="row form-group2">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="First name" name="first_name">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Last name" name="last_name">
+        </div>
+    </div>
+    <div class="form-group2">
+        <input type="email" class="form-control" placeholder="Email" name="email">
+    </div>
+    <div class="form-group2">
+        <input type="text" class="form-control" placeholder="Username" autocomplete="off" name="username">
+    </div>
+    <div class="form-group2">
+        <input type="password" class="form-control" placeholder="Password" name="password">
+    </div>
+    <div class="form-group3">
+        <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
+    </div>
+    <div class="form-group4">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    <div class="form-group5">
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+    </div>   
+</form>
+{% endblock %}
